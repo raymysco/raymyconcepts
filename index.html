@@ -1,0 +1,102 @@
+/* ------------------- index.html ------------------- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RaymyConcepts | Igniting Your Dreams</title>
+<meta name="description" content="RaymyConcepts offers printing, graphic design, website development, computer training, branding, business registration and digital services in Nigeria.">
+<meta name="keywords" content="Printing, Graphic Design, Website Design, Business Registration, Branding, Computer Training">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+<nav>
+<h1>RaymyConcepts</h1>
+<div class="menu-toggle">☰</div>
+<ul id="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#blog">Blog</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="hero">
+<div class="container">
+<h2>RaymyConcepts</h2>
+<p><strong>Igniting Your Dreams</strong></p>
+<p>Printing • Graphic Design • Digital Marketing & Business Solutions</p>
+<a href="#contact" class="btn">Get Started</a>
+</div>
+</section>
+
+<section id="about">
+<div class="container">
+<h3>About Us</h3>
+<p>Raymy Media Concepts is a leading IT institution located in Lekki, Lagos, Nigeria, dedicated to transforming dreams into reality through a variety of premier services. Our offerings include Computer Training, Graphic Designing, General Printing, Business Registration, Typesetting, and Website Designing. Our mission is to empower individuals and businesses with the necessary skills and services to excel in today’s digital landscape.</p>
+</div>
+</section>
+
+<section id="services">
+<div class="container">
+<h3>Our Services</h3>
+<p>We provide top-notch IT services and training, with a focus on nurturing talent and fostering innovation. We are committed to delivering excellence in every project, ensuring our clients receive outstanding results</p>
+<div class="services-grid">
+<a href="javascript:void(0)" class="service-card" onclick="openService('General Printing','High-quality printing services including flyers, banners, business cards, posters, documents, and large-format printing with fast turnaround.')"><span>🖨️</span>General Printing</a>
+<a href="javascript:void(0)" class="service-card" onclick="openService('Graphic Design','Creative visual solutions for branding, marketing, and promotion.')"><span>🎨</span>Graphic Design</a>
+<a href="javascript:void(0)" class="service-card" onclick="openService('Website Design','Responsive and modern websites for businesses, portfolios, and organizations, optimized for speed, SEO, and mobile devices.')"><span>💻</span>Website Design</a>
+<a href="javascript:void(0)" class="service-card" onclick="openService('Business Registration','CAC business and company registration, name reservation, documentation, and professional guidance for startups.')"><span>🏢</span>Business Registration</a>
+<a href="javascript:void(0)" class="service-card" onclick="openService('Cloth Branding','Custom T-shirt, polo, jersey, and uniform branding using high-quality printing and embroidery techniques.')"><span>👕</span>Cloth Branding</a>
+<a href="javascript:void(0)" class="service-card" onclick="openService('Document Editing','Professional document editing, formatting, typesetting, scanning, lamination, and file cleanup services.')"><span>📄</span>Document Editing</a>
+</div>
+</div>
+</section>
+
+<div id="serviceModal" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<h3 id="modalTitle"></h3>
+<p id="modalBody"></p>
+</div>
+</div>
+
+<section id="portfolio">
+<div class="container">
+<h3>Our Works</h3>
+<div class="portfolio-grid">
+<div class="portfolio-item"><img src="images/Graphic Design.jpg" alt=""><div class="portfolio-overlay">Graphic Design</div></div>
+<div class="portfolio-item"><img src="images/Cloth Branding.jpg" alt=""><div class="portfolio-overlay">Clothe Branding</div></div>
+<div class="portfolio-item"><img src="images/printing.jpg" alt=""><div class="portfolio-overlay">General Printing</div></div>
+</div>
+</div>
+</section>
+
+<section id="blog">
+<div class="container">
+<h3>Announcements & Blog</h3>
+<div id="posts"></div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+<h3>Contact Us</h3>
+<form onsubmit="event.preventDefault();alert('Message sent!')">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea placeholder="Your Message"></textarea>
+<button type="submit">Send Message</button>
+</form>
+</div>
+</section>
+
+<a href="https://wa.me/234XXXXXXXXX" class="whatsapp">💬</a>
+<button id="backToTop">↑</button>
+<footer>&copy; 2025 RaymyConcepts</footer>
+<script src="js/script.js"></script>
+</body>
+</html>
