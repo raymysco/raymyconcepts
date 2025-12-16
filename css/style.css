@@ -45,15 +45,15 @@ body {
    HEADER / NAVIGATION
 ===================================================== */
 header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  header .nav {
+  position: relative;  /* so absolute nav links are contained */
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  height: 56px;           /* SLIM BAR */
+  height: 56px;
   padding: 0 18px;
+}
+
   /* THEME BACKGROUND */
   background: linear-gradient(135deg, #0f2a66, #1f6bff);
 
@@ -71,11 +71,13 @@ header {
 
 /* MENU BUTTON */
 #menuBtn {
-display: none;
   font-size: 26px;
   cursor: pointer;
-  color: #ffffff;
+  z-index: 9999;        /* Ensure it’s above everything */
+  position: relative;    /* Needed for z-index to take effect */
+  color: #ffffff;        /* Visible on navbar */
 }
+
 
 /* MOBILE NAV */
 @media (max-width: 768px) {
@@ -99,6 +101,10 @@ display: none;
 }
 
 }
+.nav-links {
+  z-index: 10;  /* lower than menu button */
+}
+
 
 /* LOGO IMAGE */
 .logo {
