@@ -221,47 +221,78 @@ display: none;
 ===================================================== */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
-  gap: 30px;
-  margin-top: 0px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow:
+      0 10px 25px rgba(0,0,0,0.2),
+      0 0 15px rgba(31, 107, 255, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 10px 25px rgba(0,0,0,0.25),
+      0 0 25px rgba(31, 107, 255, 0.45);
+  }
+  100% {
+    box-shadow:
+      0 10px 25px rgba(0,0,0,0.2),
+      0 0 15px rgba(31, 107, 255, 0.3);
+  }
 }
 
 .service-card {
-  background: var(--bg-card);
-  padding: 40px 25px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border-soft);
-  cursor: pointer;
   position: relative;
+  border-radius: 16px;
   overflow: hidden;
-  transition: transform 2.0s, border-color 0.4s;
+  cursor: pointer;
+  height: 260px;
+  width: 100%;
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.2),
+    0 0 15px rgba(31, 107, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: glowPulse 3s infinite ease-in-out;
 }
 
-.service-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top left, rgba(31,107,255,0.2), transparent 60%);
-  opacity: 0;
-  transition: 2.0s;
+
+.service-card:hover,
+.service-card:active {
+  transform: translateY(-6px) scale(1.02); /* Slight pop */
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.25),
+    0 0 30px rgba(31, 107, 255, 0.6); /* Intensified glow */
 }
 
-.service-card:hover::before {
-  opacity: 1;
+
+@media (max-width: 768px) {
+  .service-card {
+    height: 280px; /* taller for mobile */
+  }
 }
 
-.service-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--blue-primary);
+@media (max-width: 480px) {
+  .service-card {
+    height: 300px;
+  }
 }
 
-.service-card h3 {
-  margin-bottom: 12px;
+
+  .service-info h3 {
+    font-size: 15px;
+  }
+
+  .service-info p {
+    font-size: 13px;
+  }
 }
 
-.service-card p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
+
+#services .container {
+  padding: 0 16px;   /* Keeps cards nicely inside the screen */
 }
 
 /* =====================================================
