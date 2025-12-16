@@ -1,0 +1,360 @@
+/* =====================================================
+   ROOT VARIABLES — COLOR SCHEME (DARK + BLUE LUXURY)
+===================================================== */
+:root {
+  --bg-dark: #0b0f19;          /* Page background */
+  --bg-card: #12172a;          /* Card / modal background */
+  --blue-primary: #1f6bff;     /* Main luxury blue */
+  --blue-accent: #4da3ff;      /* Hover / glow effect */
+  --text-light: #ffffff;        /* Primary text */
+  --text-muted: #b5bddb;        /* Secondary text */
+  --border-soft: rgba(255,255,255,0.08); /* Card border */
+  --radius: 18px;               /* Default border radius */
+}
+
+/* =====================================================
+   GLOBAL RESET
+===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* =====================================================
+   HEADER / NAVIGATION
+===================================================== */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(11,15,25,0.95);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* MENU BUTTON */
+#menuBtn {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* MOBILE NAV */
+@media (max-width: 768px) {
+  #menuBtn {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: #0b0f19;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 0;
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+
+}
+
+/* LOGO IMAGE */
+.logo img {
+  height: 28px;          /* 🔹 Small, elegant size */
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Desktop slightly bigger */
+@media (min-width: 768px) {
+  .logo img {
+    height: 34px;
+  }
+}
+
+.logo img {
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.logo img {
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+}
+.nav {
+  display: flex;
+  align-items: center;
+  height: 70px;
+}
+
+.nav-links a {
+  margin-left: 30px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--blue-accent);
+}
+
+/* =====================================================
+   HERO SECTION
+===================================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero h1 span {
+  color: var(--blue-primary);
+}
+
+.hero p {
+  max-width: 650px;
+  margin: 0 auto 30px auto;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: linear-gradient(135deg, var(--blue-primary), var(--blue-accent));
+  color: var(--text-light);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(31,107,255,0.5);
+}
+
+/* =====================================================
+   SERVICES GRID
+===================================================== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+  gap: 30px;
+  margin-top: 0px;
+}
+
+.service-card {
+  background: var(--bg-card);
+  padding: 40px 25px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 2.0s, border-color 0.4s;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(31,107,255,0.2), transparent 60%);
+  opacity: 0;
+  transition: 2.0s;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--blue-primary);
+}
+
+.service-card h3 {
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* =====================================================
+   PORTFOLIO GRID
+===================================================== */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.portfolio-item {
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.6s ease;
+  border-radius: var(--radius);
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.05);
+}
+
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(11,15,25,0.9), transparent);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+  color: var(--text-light);
+  font-weight: 700;
+}
+
+/* CENTER CV BUTTON */
+.cv-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* =====================================================
+   MODAL (SERVICE DETAILS)
+===================================================== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
+  z-index: 2000;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  max-width: 520px;
+  margin: 10% auto;
+  padding: 40px;
+  border-radius: var(--radius);
+  position: relative;
+  animation: scaleIn 0.4s ease;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+/* =====================================================
+   REVEAL ANIMATION
+===================================================== */
+.reveal {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* =====================================================
+   BACK-TO-TOP BUTTON
+===================================================== */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--blue-primary);
+  color: #fff;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 10px 25px rgba(31,107,255,0.4);
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  section { padding: 70px 0; }
+  .hero { text-align: center; }
+  .services-grid, .portfolio-grid { gap: 20px; }
+}
