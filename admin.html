@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | RaymyConcepts</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">RaymyConcepts Admin</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="admin.html" class="active">Dashboard</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+    <div id="menuBtn">☰</div>
+  </div>
+</header>
+
+<section class="container" style="margin-top:100px;">
+  <h2>Admin Dashboard</h2>
+  <p>Welcome, Admin. Manage services, portfolio items, blog posts, and website content.</p>
+
+  <div class="admin-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-top:30px;">
+    <div class="service-card">
+      <h3>Manage Services</h3>
+      <p>Add, edit or remove service details.</p>
+      <button class="btn">Go</button>
+    </div>
+    <div class="service-card">
+      <h3>Manage Portfolio</h3>
+      <p>Upload or edit portfolio images and projects.</p>
+      <button class="btn">Go</button>
+    </div>
+    <div class="service-card">
+      <h3>Manage Blog</h3>
+      <p>Create, edit or delete announcements and blog posts.</p>
+      <button class="btn">Go</button>
+    </div>
+    <div class="service-card">
+      <h3>Site Settings</h3>
+      <p>Adjust company info, theme, and contact details.</p>
+      <button class="btn">Go</button>
+    </div>
+  </div>
+</section>
+
+<script src="js/script.js"></script>
+</body>
+</html>
