@@ -232,6 +232,7 @@ header {
   width: 100%;
 }
 
+
 @keyframes glowPulse {
   0% {
     box-shadow:
@@ -250,12 +251,66 @@ header {
   }
 }
 
+/* Tablets: max 2 cards per row */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .service-card {
+    height: 250px; /* slightly taller for readability */
+  }
+}
+
+/* Small phones: max 1 card per row (full width) */
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .service-card {
+    height: 280px; /* taller so text fits */
+  }
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+/* Tablets: max 2 cards per row */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .service-card {
+    height: 250px; /* slightly taller for readability */
+  }
+}
+
+/* Small phones: max 1 card per row (full width) */
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .service-card {
+    height: 280px; /* taller so text fits */
+  }
+}
+
 .service-card {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  height: 260px;
   width: 100%;
   box-shadow:
     0 10px 25px rgba(0,0,0,0.2),
@@ -264,42 +319,34 @@ header {
   animation: glowPulse 3s infinite ease-in-out;
 }
 
-
 .service-card:hover,
 .service-card:active {
-  transform: translateY(-6px) scale(1.02); /* Slight pop */
+  transform: translateY(-6px) scale(1.02);
   box-shadow:
     0 12px 28px rgba(0,0,0,0.25),
-    0 0 30px rgba(31, 107, 255, 0.6); /* Intensified glow */
+    0 0 30px rgba(31, 107, 255, 0.6);
 }
 
-
-@media (max-width: 768px) {
-  .service-card {
-    height: 280px; /* taller for mobile */
-  }
+.service-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-@media (max-width: 480px) {
-  .service-card {
-    height: 300px;
-  }
-}
-
-
-  .service-info h3 {
-    font-size: 15px;
-  }
-
-  .service-info p {
-    font-size: 13px;
-  }
+.service-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+  color: #fff;
 }
 
 
 #services .container {
-  padding: 0 16px;   /* Keeps cards nicely inside the screen */
+  padding: 0 16px; /* keeps cards inside screen nicely */
 }
+
 
 /* =====================================================
    PORTFOLIO GRID
