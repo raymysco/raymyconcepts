@@ -45,15 +45,16 @@ body {
    HEADER / NAVIGATION
 ===================================================== */
 header {
-  header .nav {
-  position: relative;  /* so absolute nav links are contained */
+  
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 56px;
-  padding: 0 18px;
-}
 
+  height: 56px;           /* SLIM BAR */
+  padding: 0 18px;
   /* THEME BACKGROUND */
   background: linear-gradient(135deg, #0f2a66, #1f6bff);
 
@@ -230,112 +231,37 @@ header {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   width: 100%;
-}
-
-
-@keyframes glowPulse {
-  0% {
-    box-shadow:
-      0 10px 25px rgba(0,0,0,0.2),
-      0 0 15px rgba(31, 107, 255, 0.3);
-  }
-  50% {
-    box-shadow:
-      0 10px 25px rgba(0,0,0,0.25),
-      0 0 25px rgba(31, 107, 255, 0.45);
-  }
-  100% {
-    box-shadow:
-      0 10px 25px rgba(0,0,0,0.2),
-      0 0 15px rgba(31, 107, 255, 0.3);
-  }
-}
-
-/* Tablets: max 2 cards per row */
-@media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  .service-card {
-    height: 250px; /* slightly taller for readability */
-  }
-}
-
-/* Small phones: max 1 card per row (full width) */
-@media (max-width: 480px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .service-card {
-    height: 280px; /* taller so text fits */
-  }
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  width: 100%;
-}
-
-/* Tablets: max 2 cards per row */
-@media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  .service-card {
-    height: 250px; /* slightly taller for readability */
-  }
-}
-
-/* Small phones: max 1 card per row (full width) */
-@media (max-width: 480px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .service-card {
-    height: 280px; /* taller so text fits */
-  }
+  justify-items: center;  /* keeps cards centered in each row */
 }
 
 .service-card {
   position: relative;
+  width: 100%;
+  max-width: 300px;       /* keeps all cards same size */
+  height: 260px;
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  width: 100%;
-  box-shadow:
-    0 10px 25px rgba(0,0,0,0.2),
-    0 0 15px rgba(31, 107, 255, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: glowPulse 3s infinite ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;  /* text sticks to bottom */
+  align-items: flex-start;
 }
 
-.service-card:hover,
-.service-card:active {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow:
-    0 12px 28px rgba(0,0,0,0.25),
-    0 0 30px rgba(31, 107, 255, 0.6);
-}
 
 .service-card img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;  /* fully fills card proportionally */
+  z-index: 1;
 }
 
 .service-info {
-  position: absolute;
-  bottom: 0;
+  position: relative;
+  z-index: 2;  /* above image */
   width: 100%;
   padding: 16px;
   background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
@@ -343,10 +269,52 @@ header {
 }
 
 
-#services .container {
-  padding: 0 16px; /* keeps cards inside screen nicely */
+.service-card:hover,
+.service-card:active {
+  transform: translateY(-6px) scale(1.02); /* Slight pop */
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.25),
+    0 0 30px rgba(31, 107, 255, 0.6); /* Intensified glow */
 }
 
+/* Tablets: max 2 cards per row */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .service-card {
+    height: 280px;
+  }
+}
+
+/* Small phones: 1 card per row */
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .service-card {
+    height: 300px;
+  }
+}
+
+
+  .service-info h3 {
+    font-size: 15px;
+  }
+
+  .service-info p {
+    font-size: 13px;
+  }
+}
+
+
+#services .container {
+  padding: 0 16px;   /* Keeps cards nicely inside the screen */
+}
 
 /* =====================================================
    PORTFOLIO GRID
