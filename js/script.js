@@ -32,7 +32,7 @@ menuBtn?.addEventListener("click", () => {
 });
 
 /* =====================================================
-   SCROLL REVEAL (INTERSECTION OBSERVER)
+   SCROLL REVEAL ANIMATION
 ===================================================== */
 const revealElements = document.querySelectorAll(
   ".service-card, .portfolio-item, section h2, section p"
@@ -79,7 +79,7 @@ window.addEventListener("scroll", () => {
 
   sections.forEach((section) => {
     const sectionTop = section.offsetTop - 120;
-    if (pageYOffset >= sectionTop) {
+    if (window.pageYOffset >= sectionTop) {
       current = section.getAttribute("id");
     }
   });
@@ -90,4 +90,12 @@ window.addEventListener("scroll", () => {
       a.classList.add("active");
     }
   });
+});
+
+/* =====================================================
+   SAFETY CHECK (FOR MISSING ELEMENTS)
+===================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  if (!modal) console.warn("Modal element not found");
+  if (!menuBtn) console.warn("Menu button not found");
 });
