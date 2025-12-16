@@ -1,80 +1,93 @@
-/* ------------------- js/script.js ------------------- */
-
-// ------------------ Service Modal ------------------
-const modal = document.getElementById('serviceModal');
-const modalTitle = document.getElementById('modalTitle');
-const modalBody = document.getElementById('modalBody');
-const closeBtn = document.querySelector('.close');
+/* =====================================================
+   SERVICE MODAL LOGIC
+===================================================== */
+const modal = document.getElementById("serviceModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
 
 function openService(title, description) {
   modalTitle.textContent = title;
-  modalBody.textContent = description;
-  modal.style.display = 'flex';
+  modalText.textContent = description;
+  modal.style.display = "block";
+  document.body.style.overflow = "hidden";
 }
 
-// Close modal when clicking the close button
-closeBtn.onclick = () => {
-  modal.style.display = 'none';
-};
-
-// Close modal when clicking outside the modal content
-window.onclick = (e) => {
-  if (e.target === modal) {
-    modal.style.display = 'none';
-  }
-};
-
-// ------------------ Mobile Menu Toggle ------------------
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.getElementById('nav-links');
-
-menuToggle.onclick = () => {
-  navLinks.classList.toggle('active');
-};
-
-// ------------------ Back-to-Top Button ------------------
-const backToTop = document.getElementById('backToTop');
-
-window.onscroll = () => {
-  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-    backToTop.style.display = 'block';
-  } else {
-    backToTop.style.display = 'none';
-  }
-};
-
-backToTop.onclick = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
-
-// ------------------ PWA Service Worker ------------------
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js')
-    .then(() => console.log('Service Worker Registered'))
-    .catch((err) => console.error('SW Registration Failed:', err));
+function closeModal() {
+  modal.style.display = "none";
+  document.body.style.overflow = "auto";
 }
 
-// ------------------ Firebase Blog Placeholder ------------------
-/*
-  // Uncomment and replace with your Firebase config
-  firebase.initializeApp({
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID"
-  });
+window.addEventListener("click", (e) => {
+  if (e.target === modal) closeModal();
+});
 
-  const db = firebase.firestore();
+/* =====================================================
+   MOBILE MENU TOGGLE
+===================================================== */
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.querySelector(".nav-links");
 
-  db.collection('blog').orderBy('date', 'desc').onSnapshot(snapshot => {
-    let postsHTML = '';
-    snapshot.forEach(doc => {
-      postsHTML += `
-        <div class='blog-post'>
-          <h4>${doc.data().title}</h4>
-          <p>${doc.data().content}</p>
-        </div>
-      `;
+menuBtn?.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
+
+/* =====================================================
+   SCROLL REVEAL (INTERSECTION OBSERVER)
+===================================================== */
+const revealElements = document.querySelectorAll(
+  ".service-card, .portfolio-item, section h2, section p"
+);
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("reveal");
+        revealObserver.unobserve(entry.target);
+      }
     });
-    document.getElementById('posts').innerHTML = postsHTML;
+  },
+  { threshold: 0.15 }
+);
+
+revealElements.forEach((el) => revealObserver.observe(el));
+
+/* =====================================================
+   BACK TO TOP BUTTON
+===================================================== */
+const backToTop = document.createElement("button");
+backToTop.innerHTML = "↑";
+backToTop.className = "back-to-top";
+document.body.appendChild(backToTop);
+
+window.addEventListener("scroll", () => {
+  backToTop.style.display = window.scrollY > 400 ? "block" : "none";
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+/* =====================================================
+   ACTIVE NAV LINK ON SCROLL
+===================================================== */
+const sections = document.querySelectorAll("section");
+const navItems = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 120;
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute("id");
+    }
   });
-*/
+
+  navItems.forEach((a) => {
+    a.classList.remove("active");
+    if (a.getAttribute("href") === `#${current}`) {
+      a.classList.add("active");
+    }
+  });
+});
