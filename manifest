@@ -1,0 +1,9 @@
+{
+  "name": "RaymyConcepts",
+  "short_name": "Raymy",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0f19",
+  "theme_color": "#1f6bff",
+  "icons": []
+}
