@@ -1,80 +1,65 @@
-/* ------------------- js/script.js ------------------- */
+/* =============================
+   MOBILE MENU
+============================= */
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.querySelector(".nav-links");
 
-// ------------------ Service Modal ------------------
-const modal = document.getElementById('serviceModal');
-const modalTitle = document.getElementById('modalTitle');
-const modalBody = document.getElementById('modalBody');
-const closeBtn = document.querySelector('.close');
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("menu-open");
+});
 
-function openService(title, description) {
-  modalTitle.textContent = title;
-  modalBody.textContent = description;
-  modal.style.display = 'flex';
-}
-
-// Close modal when clicking the close button
-closeBtn.onclick = () => {
-  modal.style.display = 'none';
-};
-
-// Close modal when clicking outside the modal content
-window.onclick = (e) => {
-  if (e.target === modal) {
-    modal.style.display = 'none';
-  }
-};
-
-// ------------------ Mobile Menu Toggle ------------------
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.getElementById('nav-links');
-
-menuToggle.onclick = () => {
-  navLinks.classList.toggle('active');
-};
-
-// ------------------ Back-to-Top Button ------------------
-const backToTop = document.getElementById('backToTop');
-
-window.onscroll = () => {
-  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-    backToTop.style.display = 'block';
-  } else {
-    backToTop.style.display = 'none';
-  }
-};
-
-backToTop.onclick = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
-
-// ------------------ PWA Service Worker ------------------
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js')
-    .then(() => console.log('Service Worker Registered'))
-    .catch((err) => console.error('SW Registration Failed:', err));
-}
-
-// ------------------ Firebase Blog Placeholder ------------------
-/*
-  // Uncomment and replace with your Firebase config
-  firebase.initializeApp({
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID"
+/* Close menu when a link is clicked */
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("menu-open");
   });
+});
 
-  const db = firebase.firestore();
 
-  db.collection('blog').orderBy('date', 'desc').onSnapshot(snapshot => {
-    let postsHTML = '';
-    snapshot.forEach(doc => {
-      postsHTML += `
-        <div class='blog-post'>
-          <h4>${doc.data().title}</h4>
-          <p>${doc.data().content}</p>
-        </div>
-      `;
+/* =============================
+   SCROLL ANIMATION (SERVICES)
+============================= */
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+      }
     });
-    document.getElementById('posts').innerHTML = postsHTML;
-  });
-*/
+  },
+  { threshold: 0.2 }
+);
+
+document.querySelectorAll(".service-card").forEach(card => {
+  observer.observe(card);
+});
+
+/* =============================
+   PWA PERFORMANCE
+============================= */
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+
+// BACK TO TOP BUTTON
+const backToTop = document.createElement("button");
+backToTop.className = "back-to-top";
+backToTop.innerHTML = "↑";
+document.body.appendChild(backToTop);
+
+window.addEventListener("scroll", () => {
+  backToTop.style.display = window.scrollY > 400 ? "flex" : "none";
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+const whatsappBtn = document.createElement("a");
+whatsappBtn.href = "https://wa.me/2348134111639";
+whatsappBtn.target = "_blank";
+whatsappBtn.className = "whatsapp-btn";
+whatsappBtn.innerHTML = "💬"; // or WhatsApp icon
+document.body.appendChild(whatsappBtn);
+
