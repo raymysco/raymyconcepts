@@ -2,29 +2,21 @@
    ROOT VARIABLES — COLOR SCHEME (DARK + BLUE LUXURY)
 ===================================================== */
 :root {
-  --bg-dark: #0b0f19;          /* Page background */
-  --bg-card: #12172a;          /* Card / modal background */
-  --blue-primary: #1f6bff;     /* Main luxury blue */
-  --blue-accent: #4da3ff;      /* Hover / glow effect */
-  --text-light: #ffffff;        /* Primary text */
-  --text-muted: #b5bddb;        /* Secondary text */
-  --border-soft: rgba(255,255,255,0.08); /* Card border */
-  --radius: 18px;               /* Default border radius */
+  --bg-dark: #0b0f19;
+  --bg-card: #12172a;
+  --blue-primary: #1f6bff;
+  --blue-accent: #4da3ff;
+  --text-light: #ffffff;
+  --text-muted: #b5bddb;
+  --border-soft: rgba(255,255,255,0.08);
+  --radius: 18px;
 }
 
 /* =====================================================
-   GLOBAL RESET
+   RESET
 ===================================================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg-dark);
@@ -42,143 +34,103 @@ body {
 }
 
 /* =====================================================
-   HEADER / NAVIGATION
+   HEADER / NAVBAR
 ===================================================== */
 header {
-  
   position: sticky;
   top: 0;
   z-index: 1000;
+  height: 56px;
+  background: linear-gradient(135deg, #0f2a66, #1f6bff);
+  box-shadow:
+    0 0 0 1px rgba(93,220,255,.6),
+    0 0 12px rgba(31,107,255,.45);
+}
+
+.nav {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 100%;
+}
 
-  height: 56px;           /* SLIM BAR */
-  padding: 0 18px;
-  /* THEME BACKGROUND */
-  background: linear-gradient(135deg, #0f2a66, #1f6bff);
+.logo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 
-  /* GLOW OUTLINE */
-  box-shadow:
-    0 0 0 1px rgba(93, 220, 255, 0.6),
-    0 0 12px rgba(31, 107, 255, 0.45);
-
-    header:hover {
-  box-shadow:
-    0 0 0 1px rgba(199, 125, 255, 0.8),
-    0 0 16px rgba(31, 107, 255, 0.6);
+.logo img {
+  height: 32px;        /* hard limit */
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
 }
 
 
-/* MENU BUTTON */
+/* nav links */
+.nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* menu button */
 #menuBtn {
+  display: none;
   font-size: 26px;
   cursor: pointer;
-  z-index: 9999;        /* Ensure it’s above everything */
-  position: relative;    /* Needed for z-index to take effect */
-  color: #ffffff;        /* Visible on navbar */
+  color: #fff;
+  z-index: 2000;
 }
 
-
-/* MOBILE NAV */
 @media (max-width: 768px) {
   #menuBtn {
     display: block;
   }
 
-.nav-links a {
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.nav-links a:hover {
-  color: #ffb86c;
-}
-
+  .nav-links {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    background: #12172a;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+    display: none;
+  }
 
   .nav-links.active {
     display: flex;
   }
 }
 
-}
-.nav-links {
-  z-index: 10;  /* lower than menu button */
-}
-
-
-/* LOGO IMAGE */
-.logo {
-  height: 50%;
-  display: flex;
-  align-items: center;
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 
-.logo img {
-  max-height: 60%;        /* NEVER exceeds navbar */
-  width: auto;
-  object-fit: contain;
-  display: block;
+.service-card {
+  max-width: 300px;
+  height: 260px;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-
-@media (max-width: 8px) {
-  header .nav {
-    height: 52px;
-  }
-
-  .logo img {
-    max-height: 5%;
-  }
-}
-
-@media (max-width: 1px) {
-  header .nav {
-    height: 48px;
-  }
-
-  .logo img {
-    max-height: 50%;
-  }
-}
-
-
-.nav {
-  display: flex;
-  align-items: center;
-  height: 70px;
-}
-
-.nav-links a {
-  color: #ffffff;        /* White text */
-  font-weight: 600;      /* Optional: keep bold for readability */
-  text-decoration: none; /* Remove underline */
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #ffb86c;        /* Optional: hover accent color */
-}
-
-
-.nav-links {
-  color: var(--white--);
-  position: absolute;             /* key fix */
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 28px;
-  align-items: center;
-
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--blue-accent);
-}
 
 /* =====================================================
-   HERO SECTION
+   HERO
 ===================================================== */
 .hero {
   min-height: 100vh;
@@ -186,257 +138,343 @@ header {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 20px;
 }
-
 .hero h1 {
   font-size: clamp(3rem, 5vw, 4rem);
   font-weight: 900;
-  line-height: 1.2;
-  margin-bottom: 20px;
 }
-
-.hero h1 span {
-  color: var(--blue-primary);
-}
-
+.hero h1 span { color: var(--blue-primary); }
 .hero p {
   max-width: 650px;
-  margin: 0 auto 30px auto;
+  margin: 20px auto 30px;
   color: var(--text-muted);
-  font-size: 1.2rem;
 }
 
 .btn {
   display: inline-block;
   padding: 14px 40px;
-  background: linear-gradient(135deg, var(--blue-primary), var(--blue-accent));
-  color: var(--text-light);
-  border-radius: var(--radius);
-  text-decoration: none;
+  border-radius: 999px;
   font-weight: 700;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  color: var(--text-light);
+  background: linear-gradient(
+    135deg,
+    var(--blue-primary),
+    var(--blue-accent)
+  );
+  box-shadow:
+    0 0 18px rgba(31,107,255,0.35);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    filter 0.35s ease;
 }
 
-.btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(31,107,255,0.5);
+/* Hover & Touch Effect */
+.btn:hover,
+.btn:active {
+  transform: translateY(-5px);
+  box-shadow:
+    0 14px 30px rgba(31,107,255,0.55),
+    0 0 25px rgba(31,107,255,0.7);
+  filter: brightness(1.05);
 }
+
+
+/* MENU BUTTON */
+#menuBtn {
+  font-size: 24px;
+  cursor: pointer;
+  color: #ffffff;
+  z-index: 2000;
+  display: block;              /* visible on all screens */
+  line-height: 1;
+}
+
+/* NAV LINKS – DESKTOP DEFAULT */
+.nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+/* VERTICAL MENU (HIDDEN BY DEFAULT) */
+.nav-links.menu-open {
+  position: absolute;
+  top: 56px;              /* below navbar */
+  right: 18px;
+  flex-direction: column;
+  background: var(--bg-card);
+  padding: 16px 22px;
+  border-radius: 14px;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.35),
+    0 0 20px rgba(31,107,255,0.4);
+  gap: 16px;
+  z-index: 2000;
+}
+
+/* NAV LINKS CLICKABLE */
+.nav-links a {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.nav-links a:hover {
+  color: var(--blue-accent);
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* hidden until menu opens */
+  }
+
+  .nav-links.menu-open {
+    display: flex;
+    position: fixed;
+    top: 56px;
+    right: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
 
 /* =====================================================
    SERVICES GRID
 ===================================================== */
+/* Services grid should be fully visible and centered */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
+  justify-content: center;        /* Center cards in each row */
+  align-items: flex-start;        /* Align text inside cards properly */
   width: 100%;
-  justify-items: center;  /* keeps cards centered in each row */
+  margin: 0 auto;
 }
 
 .service-card {
   position: relative;
+  z-index: 5;                     /* Ensure above background layers */
   width: 100%;
-  max-width: 300px;       /* keeps all cards same size */
+  max-width: 300px;
   height: 260px;
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;  /* text sticks to bottom */
+  justify-content: flex-end;
   align-items: flex-start;
 }
 
 
 .service-card img {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* fully fills card proportionally */
-  z-index: 1;
+  object-fit: cover;
 }
 
 .service-info {
-  position: relative;
-  z-index: 2;  /* above image */
+  position: absolute;
+  bottom: 0;
   width: 100%;
   padding: 16px;
-  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
-  color: #fff;
+  background: linear-gradient(to top, rgba(0,0,0,.75), transparent);
 }
 
-
-.service-card:hover,
-.service-card:active {
-  transform: translateY(-6px) scale(1.02); /* Slight pop */
+.service-card:hover {
+  transform: translateY(-6px) scale(1.02);
   box-shadow:
-    0 12px 28px rgba(0,0,0,0.25),
-    0 0 30px rgba(31, 107, 255, 0.6); /* Intensified glow */
-}
-
-/* Tablets: max 2 cards per row */
-@media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  .service-card {
-    height: 280px;
-  }
-}
-
-/* Small phones: 1 card per row */
-@media (max-width: 480px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .service-card {
-    height: 300px;
-  }
-}
-
-
-  .service-info h3 {
-    font-size: 15px;
-  }
-
-  .service-info p {
-    font-size: 13px;
-  }
-}
-
-
-#services .container {
-  padding: 0 16px;   /* Keeps cards nicely inside the screen */
+    0 12px 28px rgba(0,0,0,.25),
+    0 0 30px rgba(31,107,255,.6);
 }
 
 /* =====================================================
-   PORTFOLIO GRID
+   PORTFOLIO
 ===================================================== */
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  margin-top: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
 }
 
 .portfolio-item {
+  position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  position: relative;
+  aspect-ratio: 4 / 3;     /* keeps everything uniform */
 }
 
 .portfolio-item img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  transition: transform 0.6s ease;
-  border-radius: var(--radius);
 }
 
-.portfolio-item:hover img {
-  transform: scale(1.05);
+
+/* =====================================================
+   MOBILE
+===================================================== */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    transform: translateY(-120%);
+    width: 100%;
+    background: var(--bg-card);
+    flex-direction: column;
+    padding: 20px 0;
+  }
+
+  .nav-links.expanded {
+    transform: translateY(0);
+  }
 }
 
-.portfolio-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(11,15,25,0.9), transparent);
-  display: flex;
-  align-items: flex-end;
-  padding: 20px;
-  opacity: 0;
-  transition: 0.4s;
+
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue-primary), var(--blue-accent));
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 3000;
+  box-shadow: 0 10px 25px rgba(31,107,255,0.45);
 }
 
-.portfolio-item:hover .portfolio-overlay {
-  opacity: 1;
-  color: var(--text-light);
-  font-weight: 700;
-}
-
-/* CENTER CV BUTTON */
 .cv-center {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin: 60px 0 40px;
 }
 
+/* CV button glow & hover */
+.cv-center .btn-outline {
+  padding: 14px 38px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-light);
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid transparent;
+  background-image:
+    linear-gradient(var(--bg-dark), var(--bg-dark)),
+    linear-gradient(135deg, var(--blue-primary), var(--blue-accent));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 0 18px rgba(31,107,255,0.35);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.cv-center .btn-outline:hover,
+.cv-center .btn-outline:active {
+  transform: translateY(-5px);
+  box-shadow:
+    0 14px 30px rgba(31,107,255,0.55),
+    0 0 25px rgba(31,107,255,0.7);
+}
+
+
 /* =====================================================
-   MODAL (SERVICE DETAILS)
+   CONTACT SECTION — BOTTOM CENTER
 ===================================================== */
-.modal {
-  display: none;
+#contact {
+  margin-top: 10px;          /* pulls it closer to CV */
+  padding-bottom: 40px;
+}
+
+#contact .container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Contact text spacing */
+#contact h2 {
+  margin-bottom: 14px;
+}
+
+#contact p {
+  margin-bottom: 8px;
+  color: var(--text-muted);
+}
+
+/* Contact button alignment */
+#contact .btn {
+  margin-top: 18px;
+}
+
+.contact-icon {
+  margin-right: 8px;
+  font-size: 1.1rem;
+  vertical-align: middle;
+  color: var(--blue-primary);
+}
+
+.whatsapp-btn {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(12px);
-  z-index: 2000;
-}
-
-.modal-content {
-  background: var(--bg-card);
-  max-width: 520px;
-  margin: 10% auto;
-  padding: 40px;
-  border-radius: var(--radius);
-  position: relative;
-  animation: scaleIn 0.4s ease;
-}
-
-@keyframes scaleIn {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.close-btn {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  cursor: pointer;
-  font-size: 1.5rem;
-}
-
-/* =====================================================
-   REVEAL ANIMATION
-===================================================== */
-.reveal {
-  animation: fadeUp 0.8s ease forwards;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px);}
-  to { opacity: 1; transform: translateY(0);}
-}
-
-/* =====================================================
-   BACK-TO-TOP BUTTON
-===================================================== */
-.back-to-top {
-  position: fixed;
-  bottom: 30px;
+  bottom: 100px;
   right: 30px;
-  background: var(--blue-primary);
+  background: #25d366;
   color: #fff;
-  border: none;
-  padding: 12px 16px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+  z-index: 4000;
   cursor: pointer;
-  display: none;
-  box-shadow: 0 10px 25px rgba(31,107,255,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* =====================================================
-   RESPONSIVE DESIGN
-===================================================== */
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  section { padding: 70px 0; }
-  .hero { text-align: center; }
-  .services-grid, .portfolio-grid { gap: 20px; }
+.whatsapp-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(37,211,102,0.6);
 }
+
+/* ===============================
+   SECTION HEADERS — CENTERED & GLOW
+================================= */
+/* Ensure section headers are block-level for layout flow */
+section h2 {
+  display: block;                 /* Allow it to occupy full width */
+  text-align: center;             /* Center text */
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--text-light);
+  margin: 0 auto 24px auto;       /* Spacing below header */
+  padding: 8px 24px;
+  border-radius: 50px;
+  background-image:
+    linear-gradient(var(--bg-dark), var(--bg-dark)),
+    linear-gradient(135deg, var(--blue-primary), var(--blue-accent));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow:
+    0 0 18px rgba(31,107,255,0.35);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
+  z-index: 10;                    /* Ensure it’s above background */
+  cursor: default;
+}
+
