@@ -36,23 +36,67 @@ body {
 /* =====================================================
    HEADER / NAVBAR
 ===================================================== */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  height: 56px;
+/* NAVBAR */
+header .nav {
+  display: flex;
+  justify-content: center;   /* center nav items */
+  align-items: center;
+  position: relative;
+  height: 70px;
+  padding: 0 18px;
   background: linear-gradient(135deg, #0f2a66, #1f6bff);
-  box-shadow:
-    0 0 0 1px rgba(93,220,255,.6),
-    0 0 12px rgba(31,107,255,.45);
 }
 
-.nav {
-  position: relative;
+/* NAV LINKS */
+.nav-links {
   display: flex;
+  gap: 28px;
   align-items: center;
-  justify-content: space-between;
-  height: 100%;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  flex-direction: row;       /* horizontal by default */
+}
+
+/* MENU BUTTON (desktop & mobile) */
+#menuBtn {
+  font-size: 26px;
+  cursor: pointer;
+  color: #ffffff;
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+  display: block;
+}
+
+/* DROPDOWN EFFECT (vertical menu when toggled) */
+.nav-links.menu-open {
+  position: absolute;
+  top: 100%;             /* below nav bar */
+  right: 18px;           /* aligned with button */
+  flex-direction: column;
+  background: var(--bg-card);
+  gap: 12px;
+  padding: 12px 0;
+  border-radius: 12px;
+  width: 200px;          /* dropdown width */
+  text-align: center;
+  display: flex;
+  z-index: 9998;
+}
+
+.nav-links a {
+  padding: 8px 16px;
+  font-size: 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-links a:hover {
+  color: var(--blue-accent);
 }
 
 .logo {
@@ -68,64 +112,88 @@ header {
   object-fit: contain;
 }
 
-
-/* nav links */
-.nav-links {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 28px;
-}
-
-.nav-links a {
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-/* menu button */
-#menuBtn {
-  display: none;
-  font-size: 26px;
-  cursor: pointer;
-  color: #fff;
-  z-index: 2000;
-}
-
-@media (max-width: 768px) {
-  #menuBtn {
-    display: block;
-  }
-
-  .nav-links {
-    position: fixed;
-    top: 56px;
-    left: 0;
-    width: 100%;
-    background: #12172a;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px 0;
-    display: none;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-}
-
+/* Services Info Grid */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
+  width: 100%;
+  justify-items: center;
 }
 
+/* Service Card */
 .service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   max-width: 300px;
-  height: 260px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 16px;
   overflow: hidden;
+}
+
+/* Card Image */
+.service-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px 16px 0 0;
+}
+
+/* Service Info Below Each Card */
+.service-info {
+  text-align: center;
+  padding: 12px;
+  background: var(--bg-card);
+  width: 100%;
+}
+
+.service-info h3 {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+
+.service-info p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Hover Effect on Card */
+.service-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.25),
+    0 0 30px rgba(31, 107, 255, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .service-card img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .service-card img {
+    height: 160px;
+  }
+  .service-info h3 {
+    font-size: 1rem;
+  }
+  .service-info p {
+    font-size: 0.9rem;
+  }
 }
 
 
@@ -180,67 +248,6 @@ header {
   filter: brightness(1.05);
 }
 
-
-/* MENU BUTTON */
-#menuBtn {
-  font-size: 24px;
-  cursor: pointer;
-  color: #ffffff;
-  z-index: 2000;
-  display: block;              /* visible on all screens */
-  line-height: 1;
-}
-
-/* NAV LINKS – DESKTOP DEFAULT */
-.nav-links {
-  display: flex;
-  gap: 28px;
-  align-items: center;
-}
-
-/* VERTICAL MENU (HIDDEN BY DEFAULT) */
-.nav-links.menu-open {
-  position: absolute;
-  top: 56px;              /* below navbar */
-  right: 18px;
-  flex-direction: column;
-  background: var(--bg-card);
-  padding: 16px 22px;
-  border-radius: 14px;
-  box-shadow:
-    0 12px 30px rgba(0,0,0,0.35),
-    0 0 20px rgba(31,107,255,0.4);
-  gap: 16px;
-  z-index: 2000;
-}
-
-/* NAV LINKS CLICKABLE */
-.nav-links a {
-  color: #ffffff;
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.nav-links a:hover {
-  color: var(--blue-accent);
-}
-
-@media (max-width: 768px) {
-  .nav-links {
-    display: none; /* hidden until menu opens */
-  }
-
-  .nav-links.menu-open {
-    display: flex;
-    position: fixed;
-    top: 56px;
-    right: 0;
-    width: 100%;
-    border-radius: 0;
-  }
-}
 
 
 /* =====================================================
